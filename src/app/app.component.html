@@ -1,0 +1,84 @@
+<main class="main">
+  <div class="content">
+    <div class="nav-bar-container
+                d-flex
+                column
+                justify-center
+                align-center" id="nav-bar">
+      
+      <div class="nav-bar-header d-flex">
+        <div class="logo-icons m-auto d-flex column justify-center align-center">
+          <div class="full-image-container m-auto"
+               (click)="toggleIconsSelector()"
+               [ngClass]="{active: !isIconSelectorToggled}">
+            <img [ngClass]="{'active': selectedIdOfBU === 'emBU'}" 
+                 id="everyMatrixBigLogo" src="../assets/img/EveryMatrix.png" />
+            <img [ngClass]="{'active': selectedIdOfBU === 'gmBU'}"
+                 id="gamMatrixBigLogo" src="../assets/img/GamMatrix.png" />
+          </div>
+          <div class="small-image-container m-auto d-flex row justify-center align-center"
+               [ngClass]="{'active': isIconSelectorToggled}">
+            <span class="small-image d-flex m-auto" id="everyMatrixSmallLogo" (click)="toggleGamMatrix('emBU')">
+              <img src="../assets/img/iconEveryMatrix.png"/>
+            </span>
+            <span class="small-image d-flex m-auto" id="gamMatrixSmallLogo" (click)="toggleGamMatrix('gmBU')">
+              <img src="../assets/img/iconGamMatrix.png"/>
+            </span>
+          </div>
+        </div>
+      </div>
+     
+      <div class="nav-bar-body" (mouseleave)="onLeave()">
+        <ul class="menu-items-container">
+          <li class="menu-item-style d-flex row justify-start align-center"
+              [ngClass]="{fallDownAnimation: !isIconSelectorToggled}"
+              *ngFor="let pair of listOfMenusArray; let i = index"
+              (click)="toggleSubmenu(i)"
+              (mouseenter)="onHover($event)">
+            <img src="../assets/icons/{{ pair[1].icon }}-icon.svg"/>
+            <p>{{ pair[1].title }}</p>
+      
+            <ul class="submenu-items-container d-flex column justify-center align-start"
+                *ngIf="pair[1].submenus && pair[1].isOpen">
+              <li class="submenu-item-style d-flex row justify-start align-center"
+                    (mouseenter)="onHover($event)"
+                  *ngFor="let submenu of pair[1].submenus | keyvalue">
+                <a [href]="submenu.value.url">{{ submenu.value.title }}</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div id="nav-content-highlight" [ngStyle]="highlightStyle"></div>
+      </div>
+      <div class="nav-bar-footer"
+           [ngClass]="{fallDownFooterAnimation: !isIconSelectorToggled}">
+        <div class="nav-bar-footer-container d-flex column justify-center align-center"
+             [ngClass]="{active: isFooterDetailsToggled}">
+          <div class="nav-footer-heading d-flex row justify-center align-center"
+              (click)="toggleFooterContent()">
+              <div class="nav-footer-avatar d-flex justify-start align-center">
+                <img src="../assets/icons/player-icon.svg">
+              </div>
+              <div class="nav-footer-titlebox d-flex column justify-center align-start">
+                <a id="nav-footer-title" href="https://codepen.io/uahnbu/pens/public" target="_blank">uahnbu</a>
+                <span id="nav-footer-subtitle">Admin</span>
+              </div>
+              <label class="d-flex justify-end align-center"
+                     [ngClass]="{active: isFooterDetailsToggled}">
+                <img src="../assets/icons/chevron-down-icon.svg"/>
+              </label>
+          </div>
+          <div class="nav-footer-content"
+                [ngClass]="{active: isFooterDetailsToggled}">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet nulla repudiandae iste inventore voluptatem perspiciatis! Quidem incidunt consequatur voluptatem, maxime omnis nulla! Obcaecati officiis iure quidem at tempora eos accusantium rem inventore voluptate iste molestias explicabo cumque adipisci est repudiandae, reprehenderit velit quos nulla tenetur vel dolor voluptates? Dolore similique esse, sit sint quaerat ipsum deserunt sapiente illum quisquam voluptate tenetur animi atque possimus accusantium fuga perferendis dolor officiis sequi earum quo quas accusamus laboriosam natus eveniet? Architecto est suscipit deleniti reiciendis, quo officiis laborum! Doloribus, tempore similique. Aliquid ut autem sint consectetur a, nihil deserunt sunt nobis quam laboriosam.</p>
+          </div>
+        </div>
+      </div>
+      <span class="nav-bar-background"
+            [ngClass]="{active: !isIconSelectorToggled}"
+      ></span>
+    </div>
+  </div>
+</main>
+
+<router-outlet />

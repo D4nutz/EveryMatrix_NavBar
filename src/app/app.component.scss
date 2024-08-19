@@ -1,0 +1,356 @@
+$--bg-primary-color: #18283b;
+$--em-primary-color: #2bb454;
+$--gm-primary-color: #2d5db0;
+$--font-primary-color: #fff;
+
+* {
+    color: $--font-primary-color;
+    transition: all .5s ease-in-out;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    color: $--font-primary-color;
+}
+
+.main, .content {
+    height: 100vh;
+}
+
+.nav-bar-container {
+    width: 250px;
+    height: 100%;
+    border-radius: 15px;
+    padding: 0px 10px;
+    position: relative;
+    background-color: $--bg-primary-color;
+    .nav-bar-header,
+    .nav-bar-body,
+    .nav-bar-footer {
+        width: 100%;
+        z-index: 1;
+    }
+
+    .nav-bar-header {
+        position: relative;
+        transition: all .5s ease-in-out;
+        margin-bottom: auto;
+        border-bottom: 1px solid $--bg-primary-color;
+        padding: 10px 0px;
+        z-index: 2;
+        .full-image-container {
+            opacity: 0;
+            transform: scale(0);
+            transition: all .5s .2s ease-in-out;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                opacity: 0;
+                transform: scale(0);
+                transition: all .5s ease-in-out;
+                cursor: pointer;
+            }
+
+            #gamMatrixBigLogo {
+                position: absolute;
+                left: 5px;
+                top: 0px;
+            }
+
+            .active {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .full-image-container.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .small-image-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            visibility: hidden;
+            .small-image {
+                cursor: pointer;
+                border-radius: 100%;
+                transition: all .5s ease-in-out;
+                transform: scale(0);
+                opacity: 0;
+                img {
+                    width: 35px;
+                    height: 35px;
+                }
+            }
+            #everyMatrixSmallLogo {
+                background-color: $--em-primary-color;
+            }
+            #gamMatrixSmallLogo {
+                background-color: $--gm-primary-color;
+            }
+        }
+
+        .small-image-container.active {
+            visibility: visible;
+
+            .small-image {
+                transform: scale(1);
+                opacity: 1;
+                &:hover {
+                    transform: translateY(-10px);
+                }
+            }
+        }
+    }
+
+    .emBackground {
+        background-color: $--em-primary-color;
+    }
+    .gmBackground {
+        background-color: $--gm-primary-color;
+    }
+    .defaultBackground {
+        background-color: $--bg-primary-color;
+    }
+
+    .nav-bar-background {
+        transform-origin: 100% 0;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        position: absolute;
+        z-index: 0;
+        animation: reverseVerticalBgAnimation 1s ease 0s 1 normal forwards;
+    }
+
+    .nav-bar-background.active {
+        animation: verticalBgAnimation 1s ease 0s 1 normal forwards;
+    }
+
+    .nav-bar-body {
+        margin-bottom: auto;
+        height: 100%;
+        position: relative;
+        .menu-items-container {
+            margin: 0;
+            padding: 10px;
+            margin-bottom: auto;
+            position: relative;
+            z-index: 1;
+            .menu-item-style {
+                font-size: 20px;
+                padding: 10px 20px;
+                border: 0;
+                border-style: solid;
+                gap: 10px;
+                transition: all .5s ease-in-out;
+                border-radius: 10px;
+                cursor: pointer;
+                opacity: 0;
+                p {
+                    margin: 0;
+                }
+                img {
+                    width: 20px;
+                    height: 20px;
+                    color: $--font-primary-color;
+                }
+
+                .submenu-items-container {
+                    position: absolute;
+                    top: 0;
+                    left: 250px;
+                    list-style: none;
+                    padding: 5px 10px;
+                    background-color: $--em-primary-color;
+                    .submenu-item-style {
+                        width: 100%;
+                        height: 100%;
+                        padding: 10px 0px;
+                    }
+                }
+            }
+        }
+        #nav-content-highlight {
+            position: absolute;
+            background-color: $--bg-primary-color;
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out;
+        }
+    }
+
+    .nav-bar-footer {
+        height: 54px;
+        position: relative;
+        opacity: 0;
+        .nav-bar-footer-container {
+            position: absolute;
+            border-radius: inherit;
+            height: 54px;
+            top: -20px;
+            overflow: hidden;
+            background-color: $--bg-primary-color;
+            border-radius: 10px;
+            padding: 0px 10px;
+            z-index: 2;
+            transition: all 0.5s ease-in-out;
+            .nav-footer-heading {
+                position: relative;
+                width: 100%;
+                padding: 10px 0px;
+                cursor: pointer;
+                .nav-footer-avatar {
+                    width: 40%;
+                    position: relative;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    transform: translate(0);
+                    transition: 0.2s;
+                    img {
+                        width: 32px;
+                        height: 32px;
+                    }
+                }
+                .nav-footer-titlebox {
+                    width: 100%;
+                    position: relative;
+                    transition: opacity 1s;
+                    a {
+                        color: inherit;
+                        text-decoration: inherit;
+                    }
+
+                    span {
+                        color: $--font-primary-color;
+                        font-size: 10px;
+                    }
+                }
+                label {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+                    transform: rotateX(0deg);
+                    transition: all .5s ease-in-out;
+                    img {
+                        width: 15px;
+                        height: 15px;
+                    }
+                }
+                label.active {
+                    transform: rotateX(180deg);
+                }
+            }
+            .nav-footer-content {
+                color: $--font-primary-color;
+                font-size: 10px;
+                height: 0px;
+                overflow: auto;
+                -ms-overflow-style: none;  /* Internet Explorer 10+ */
+                scrollbar-width: none;  /* Firefox */
+            }
+            .nav-footer-content.active {
+                height: 150px;
+                padding: 15px 0px;
+                border-top: 1px solid $--font-primary-color;
+            }
+        }
+        .nav-bar-footer-container.active {
+            height: auto;
+            top: -200px;
+        }
+    }
+}
+
+.d-grid{
+    display: grid;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-center {
+    justify-content: center;
+}
+.justify-start {
+    justify-content: flex-start;
+}
+.justify-end {
+    justify-content: flex-end;
+}
+.align-center {
+    align-items: center;
+}
+.align-start {
+    align-items: flex-start;
+}
+.align-end {
+    align-items: flex-end;
+}
+.column {
+    flex-direction: column;
+}
+.row {
+    flex-direction: row;
+}
+
+.mt-auto {
+    margin-top: auto;
+}
+
+.mb-auto {
+    margin-bottom: auto;
+}
+
+.m-auto {
+    margin: auto;
+}
+
+.fallDownAnimation {
+    animation: fallAnimation .5s .2s ease-in-out forwards;
+}
+
+.fallDownFooterAnimation {
+    animation: fallAnimation .5s .5s ease-in-out forwards;
+}
+
+@keyframes fallAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes verticalBgAnimation {
+    0% {
+        transform: scaleY(0);
+        transform-origin: 100% 0%;
+    }
+
+    100% {
+        transform: scaleY(1);
+        transform-origin: 100% 0%;
+    }
+}
+
+@keyframes reverseVerticalBgAnimation {
+    0% {
+        transform: scaleY(1);
+        transform-origin: 100% 0%;
+    }
+
+    100% {
+        transform: scaleY(0);
+        transform-origin: 100% 0%;
+    }
+}
